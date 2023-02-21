@@ -60,8 +60,11 @@ class Scoreboard:
     self.write_score()
 
   def read_high_score(self):
-    with open("high_score.txt", "r") as file:
-      high_score = file.read()
+    try:
+      with open("high_score.txt", "r") as file:
+        high_score = file.read()
+    except FileNotFoundError:
+      high_score = "0"
     self.high_score = int(high_score.strip())
     self.update_high_score_text()
 
